@@ -49,3 +49,7 @@ go version go1.4 linux/amd64
 * :w保存时自动格式化go代码，并且自动导入/删除import语句
 * 光标放置在函数名上，按gd转移到函数定义
 
+##参考资料
+* https://www.google.com.hk/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&ved=0CCkQFjAB&url=%68%74%74%70%3a%2f%2f%77%75%77%65%6e%2e%6f%72%67%2f%61%72%74%69%63%6c%65%2f%33%38%2f%73%65%74%75%70%2d%76%69%6d%2d%67%6f%2d%64%65%76%2d%65%6e%76%69%72%6f%6e%6d%65%6e%74%2e%68%74%6d%6c&ei=okR9VLBPguyYBcingrgI&usg=AFQjCNGqKslwKGkGwOt-mGTrgu4v3y-BoQ
+* http://ju.outofmemory.cn/entry/49172
+
