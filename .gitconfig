@@ -1,0 +1,14 @@
+[user]
+	email = fanzhidongyzby@gmail.com
+	name = Florian 
+[core]
+	editor = vim
+[alias]
+	st = status
+	cm = commit
+	br = branch
+	ck = checkout
+	df = diff
+	ad = add
+	lo = log
+
