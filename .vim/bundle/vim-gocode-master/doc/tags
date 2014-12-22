@@ -1,0 +1,15 @@
+:Drop	vim-gocode.txt	/*:Drop*
+:Fmt	vim-gocode.txt	/*:Fmt*
+:GoDrop	vim-gocode.txt	/*:GoDrop*
+:GoImport	vim-gocode.txt	/*:GoImport*
+:GoImportAs	vim-gocode.txt	/*:GoImportAs*
+:GoInstall	vim-gocode.txt	/*:GoInstall*
+:GoTest	vim-gocode.txt	/*:GoTest*
+:GoTestVerbose	vim-gocode.txt	/*:GoTestVerbose*
+:Godoc	vim-gocode.txt	/*:Godoc*
+:Import	vim-gocode.txt	/*:Import*
+:ImportAs	vim-gocode.txt	/*:ImportAs*
+:RelPkg	vim-gocode.txt	/*:RelPkg*
+vim-gocode-contents	vim-gocode.txt	/*vim-gocode-contents*
+vim-gocode-usage	vim-gocode.txt	/*vim-gocode-usage*
+vim-gocode.txt	vim-gocode.txt	/*vim-gocode.txt*
