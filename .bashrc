@@ -65,6 +65,15 @@ alias egrep='egrep --color=auto'
 alias cls='clear'
 alias mk='make'
 
+alias his='history | grep'
+alias ..='cd ..'
+alias ...='cd ../..'
+
+dir() { mkdir -p "$1"; cd "$1";}                                                                                                                                                         cl() { cd "$1"; ls;}
+cll() { cd "$1"; ll;}
+bak() { cp "$1"{,.bak};} 
+ck() { md5sum "$1" | grep "$2";}
+
 ########################
 # exports
 ########################
@@ -72,5 +81,5 @@ alias mk='make'
 #go export
 export GOROOT=$HOME/program/go
 export GOPATH=$HOME/go
-export PATH=$GOROOT/bin:$PATH
+export PATH=.:$GOROOT/bin:$PATH
 
