@@ -58,6 +58,8 @@ alias ls='ls --color'
 alias ll='ls -AlF'
 alias la='ls -A'
 alias l='ls -CF'
+alias g='git'
+alias s='ls'
 
 alias grep='grep --color=auto -n'
 alias fgrep='fgrep --color=auto'
