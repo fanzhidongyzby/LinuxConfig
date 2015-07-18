@@ -10,5 +10,5 @@
 	ck = checkout
 	df = diff
 	ad = add
-	lo = log
+	lo = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
