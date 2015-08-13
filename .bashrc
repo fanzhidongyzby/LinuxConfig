@@ -87,3 +87,12 @@ export GOROOT=$HOME/program/go
 export GOPATH=$HOME/go
 export PATH=.:$GOROOT/bin:$PATH
 
+function unrpm()
+{
+  rpm2cpio $1 | cpio -div
+}
+
+function l()
+{
+  readlink -f $1
+}
