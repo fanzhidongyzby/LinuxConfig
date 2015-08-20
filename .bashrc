@@ -78,6 +78,22 @@ cll() { cd "$1"; ll;}
 bak() { cp "$1"{,.bak};} 
 ck() { md5sum "$1" | grep "$2";}
 
+alias gst='g st'
+alias gcm='g cm'
+alias gbr='g br'
+alias gck='g ck'
+alias gdf='g df'
+alias gad='g ad'
+alias glo='g lo'
+alias gpl='g pl'
+alias gps='g ps'
+alias gfc='g fc'
+alias gre='g re'
+alias gsh='g sh'
+alias gmg='g mg'
+alias grb='g rb'
+alias grs='g rs'
+
 ########################
 # exports
 ########################
