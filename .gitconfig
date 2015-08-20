@@ -11,4 +11,11 @@
 	df = diff
 	ad = add
 	lo = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-
+	pl = pull
+	ps = push
+	fc = fetch
+	re = remote
+	sh = stash
+	mg = merger
+	rb = rebase
+	rs = reset
