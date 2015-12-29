@@ -7,6 +7,9 @@
 "
 "=========================================================================
 call pathogen#infect()
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+set encoding=utf-8
 set nocompatible " 关闭 vi 兼容模式
 syntax on " 自动语法高亮
 "colorscheme desert " 设定配色方案
