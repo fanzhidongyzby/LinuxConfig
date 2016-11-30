@@ -4,8 +4,9 @@
 export TERM=xterm-256color
 
 # prompt
-PS1="\n\[\033[0;37m\]\342\224\214\342\224\200\$(if [[ \$? != 0 ]]; then echo '\[\033[0;31m\] N\[\033[0;37m\]\040\342\224\200'; else echo '\[\033[0;32m\] Y\[\033[0;37m\]\040\342\224\200'; fi)[\$(if [[ ${EUID} == 0 ]]; then echo '\[\033[0;31m\]\h'; else echo '\[\033[0;33m\]\u\[\033[0;37m\]@\[\033[0;96m\]\h'; fi)\[\033[0;37m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;37m\]]\n\[\033[0;37m\]\342\224\224\342\224\200\342\224\200\342\224\200 \[\033[0m\]"
-# PS1="\[\033[0;37m\][\[\033[0m\]\$(if [[ \$? != 0 ]]; then echo '\[\033[0;31m\]\u\[\033[0;37m\]'; else echo '\[\033[0;32m\]\u\[\033[0;37m\]'; fi)\[\033[0;37m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;37m\]] \[\033[0m\]"
+#PS1="\n\[\033[0;37m\]\342\224\214\342\224\200\$(if [[ \$? != 0 ]]; then echo '\[\033[0;31m\] N\[\033[0;37m\]\040\342\224\200'; else echo '\[\033[0;32m\] Y\[\033[0;37m\]\040\342\224\200'; fi)[\$(if [[ ${EUID} == 0 ]]; then echo '\[\033[0;31m\]\h'; else echo '\[\033[0;33m\]\u\[\033[0;37m\]@\[\033[0;96m\]\h'; fi)\[\033[0;37m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;37m\]]\n\[\033[0;37m\]\342\224\224\342\224\200\342\224\200\342\224\200 \[\033[0m\]"
+PS1="(\[\033[0;32m\]\u\[\033[0m\]) \[\033[0;31m\]\w\[\033[0m\] \$ "
+#PS1="\[\033[0;31m\]\w\[\033[0m\] \$ "
 
 # don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
@@ -41,12 +42,6 @@ function cd()
 }
 [ -f $LAST_DIR ] && cd `cat $LAST_DIR`
 
-# translate English to Chinese using jianbing DNS TXT
-function t()
-{
-  dig "$*.jianbing.org" +short txt | perl -pe's/\\(\d{1,3})/chr $1/eg; s/(^"|"$)//g'
-}
-
 ########################
 # aliases
 ########################
@@ -55,14 +50,14 @@ alias sudo='sudo env PATH=$PATH'
 alias v='vim'
 alias vi='vim'
 alias cls='clear'
-alias ls='ls --color'
+alias ls='ls -G'
 alias ll='ls -AlF'
 alias la='ls -A'
 alias l='ls -CF'
 alias g='git'
 alias s='ls'
 
-alias grep='grep --color=auto -n'
+alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias cls='clear'
@@ -71,13 +66,6 @@ alias mk='make'
 alias his='history | grep'
 alias ..='cd ..'
 alias ...='cd ../..'
-
-dir() { mkdir -p "$1"; cd "$1";}
-cl() { cd "$1"; ls;}
-cll() { cd "$1"; ll;}
-bak() { cp "$1"{,.bak};} 
-ck() { md5sum "$1" | grep "$2";}
-
 alias gst='g st'
 alias gcm='g cm'
 alias gbr='g br'
@@ -94,21 +82,17 @@ alias gmg='g mg'
 alias grb='g rb'
 alias grs='g rs'
 
+dir() { mkdir -p "$1"; cd "$1";}
+cl() { cd "$1"; ls;}
+cll() { cd "$1"; ll;}
+bak() { cp "$1"{,.bak};} 
+ck() { md5sum "$1" | grep "$2";}
+
 ########################
 # exports
 ########################
-
-#go export
-export GOROOT=$HOME/program/go
 export GOPATH=$HOME/go
-export PATH=.:$GOROOT/bin:$PATH
-
-function unrpm()
-{
-  rpm2cpio $1 | cpio -div
-}
-
-function l()
-{
-  readlink -f $1
-}
+export GOBIN=$HOME/go/bin
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/
+export MVN_HOME=/usr/local/apache-maven-3.0.5
+export PATH=.:$JAVA_HOME/bin:$MVN_HOME/bin:$PATH
