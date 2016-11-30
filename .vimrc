@@ -6,17 +6,21 @@
 " Version: 1.80
 "
 "=========================================================================
-call pathogen#infect()
-set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
-set termencoding=utf-8
-set encoding=utf-8
+" call pathogen#infect()
+set paste
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 set nocompatible " 关闭 vi 兼容模式
 syntax on " 自动语法高亮
-"colorscheme desert " 设定配色方案
-colorscheme molokai" 设定配色方案
+colorscheme desert " 设定配色方案
+"colorscheme molokai" 设定配色方案
 set number " 显示行号
 set cursorline " 突出显示当前行
-highlight cursorline cterm=bold ctermbg=black ctermfg=none
+highlight cursorline cterm=bold ctermbg=green ctermfg=none
+:hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+:hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+:nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 set ruler " 打开状态栏标尺
 set shiftwidth=4 " 设定 << 和 >> 命令移动时的宽度为 4
 set softtabstop=4 " 使得按退格键时可以一次删掉 4 个空格
@@ -50,7 +54,7 @@ set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:
 set foldcolumn=0 " 设置折叠区域的宽度
 setlocal foldlevel=1 " 设置折叠层数为
 "set foldclose=all " 设置为自动关闭折叠 
-" nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " 用空格键来开关折叠
 
 
@@ -287,45 +291,45 @@ imap <silent> <C-e> <Plug>(neocomplcache_snippets_expand)
 "-----------------------------------------------------------------
 " plugin – a.vim
 "-----------------------------------------------------------------
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'fatih/vim-go'
-Plugin 'Blackrush/vim-gocode'
-Plugin 'dgryski/vim-godef'
-call vundle#end()
-
-nmap <C-l> :TagbarToggle<CR>
-map <C-n> :NERDTreeToggle<CR>
-
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
-
-let g:godef_split=2
-let g:godef_same_file_in_same_window=1
-let g:go_fmt_command = "goimports"
+" set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin()
+" Plugin 'fatih/vim-go'
+" Plugin 'Blackrush/vim-gocode'
+" Plugin 'dgryski/vim-godef'
+" call vundle#end()
+" 
+" nmap <C-l> :TagbarToggle<CR>
+" map <C-n> :NERDTreeToggle<CR>
+" 
+" let g:tagbar_type_go = {
+"     \ 'ctagstype' : 'go',
+"     \ 'kinds'     : [
+"         \ 'p:package',
+"         \ 'i:imports:1',
+"         \ 'c:constants',
+"         \ 'v:variables',
+"         \ 't:types',
+"         \ 'n:interfaces',
+"         \ 'w:fields',
+"         \ 'e:embedded',
+"         \ 'm:methods',
+"         \ 'r:constructor',
+"         \ 'f:functions'
+"     \ ],
+"     \ 'sro' : '.',
+"     \ 'kind2scope' : {
+"         \ 't' : 'ctype',
+"         \ 'n' : 'ntype'
+"     \ },
+"     \ 'scope2kind' : {
+"         \ 'ctype' : 't',
+"         \ 'ntype' : 'n'
+"     \ },
+"     \ 'ctagsbin'  : 'gotags',
+"     \ 'ctagsargs' : '-sort -silent'
+" \ }
+" 
+" let g:godef_split=2
+" let g:godef_same_file_in_same_window=1
+" let g:go_fmt_command = "goimports"
 
