@@ -88,6 +88,71 @@ cll() { cd "$1"; ll;}
 bak() { cp "$1"{,.bak};} 
 ck() { md5sum "$1" | grep "$2";}
 
+lso() {
+  if [[ -n "$1" ]]; then
+    sudo lsof -nP -sTCP:LISTEN -iTCP | grep $1
+  else
+    sudo lsof -nP -sTCP:LISTEN -iTCP
+  fi
+}
+
+lsp() {
+  if [[ -n "$1" ]]; then
+    sudo ps aux | grep $1
+  else
+    sudo ps aux
+  fi
+}
+
+dj() {
+  JarFile=$1
+  Pattern=$2
+  if [[ -z $JarFile || -z $Pattern ]]; then
+    echo "使用IntelijIdea自动反编译Jar包内的文件"
+	echo "Usage:"
+	echo "    dj <Jar文件> <文件名关键字> [<索引>]"
+    return 1
+  fi
+  if [[ ! -e $JarFile ]]; then
+    echo "文件"$JarFile"不存在"
+    return 1
+  fi
+
+  Files=($(jar tf $JarFile 2>/dev/null | grep -E "$Pattern\\w*\\.?\\w*$" | grep -v "\\$"))
+  File=""
+  if [[ -z $Files ]]; then
+    echo "没有找到匹配文件"
+    return 1
+  elif [[ ${#Files[@]} -eq 1 ]]; then
+  	File=${Files[0]}
+  else
+  	echo "找到以下文件:"
+  	for (( i=0; i<${#Files[@]}; i++ ));do
+      echo "$i: ${Files[$i]}"
+    done
+  
+    Index=$3
+    if [[ -z $Index ]];then
+      echo -n "选择文件: "
+      read Index
+    fi
+    if [ $Index -lt 0 ] 2>/dev/null; then
+      return 1
+    fi
+    if [ $Index -lt ${#Files[@]} ] 2>/dev/null; then
+      File=${Files[$Index]}
+    fi
+  fi
+
+  if [[ -z $File ]]; then
+    return 1
+  fi
+
+  Tmp=/tmp/dj
+  mkdir -p $Tmp && unzip -oj $JarFile $File -d $Tmp &>/dev/null
+  idea $Tmp/$(basename $File) && echo "已打开文件$(basename $File)"
+}
+
 ########################
 # exports
 ########################
